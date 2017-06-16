@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.MusicfileDAO">
+
+	<!--封装关系属性-->
+	<resultMap id="musicfileMap" type="musicfile">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="name" property="name"/>
+		<result column="size" property="size"/>
+
+		<association property="music" javaType="music"
+					 select="com.baizhi.dao.MusicDAO.selectById" column="musicid">
+
+		</association>
+ 	</resultMap>
+	<sql id="musicfileconmmons">
+		id,title,name,size,musicid
+	</sql>
+<!--查所有上师-->
+	<select id="selectAll" resultMap="musicfileMap">
+		select <include refid="musicfileconmmons"/> from musicfile
+	</select>
+<!--根据一个id查一个详情-->
+	<select id="selectById" parameterType="String" resultMap="musicfileMap">
+		select <include refid="musicfileconmmons"/> from musicfile where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="musicfile">
+		insert into musicfile values(#{id},#{title},#{name},#{size},#{music.id})
+	</insert>
+	<!--修改-->
+	<update id="update" parameterType="musicfile">
+		update musicfile set id=#{id},title=#{title},name=#{name},size=#{size},musicid=#{music.id} where id=#{id}
+	</update>
+	<!--删除-->
+	<delete id="delete" parameterType="String">
+		delete from musicfile where id=#{id}
+	</delete>
+	<!--分页-->
+	<select id="queryByPage" resultMap="musicfileMap">
+		select <include refid="musicfileconmmons"/> from musicfile limit #{page},#{rows}
+	</select>
+</mapper>

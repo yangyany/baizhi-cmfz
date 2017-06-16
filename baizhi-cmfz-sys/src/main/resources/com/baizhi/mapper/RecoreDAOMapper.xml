@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.RecordDAO">
+<!--封装关系属性-->
+	<resultMap id="recordMap" type="record">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+
+		<association property="user" javaType="user"
+					 select="com.baizhi.dao.UserDAO.selectLegalname" column="userid"></association>
+	</resultMap>
+<!--查所有记录-->
+	<select id="selectAll" resultMap="recordMap">
+		select id,name,userid from record
+	</select>
+<!--根据一个id查一个详情-->
+	<select id="selectById" parameterType="String" resultMap="recordMap">
+		select id,name,userid from record where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="record">
+		insert into record values(#{id},#{name},#{user.id})
+	</insert>
+	<!--修改-->
+	<update id="update" parameterType="record">
+		update record set id=#{id},name=#{name},userid=#{user.id} where id=#{id}
+	</update>
+	<!--删除-->
+	<delete id="delete" parameterType="String">
+		delete from record where id=#{id}
+	</delete>
+	<!--分页-->
+	<select id="queryByPage" resultMap="recordMap">
+		select id,name,userid from record limit #{page},#{rows}
+	</select>
+</mapper>

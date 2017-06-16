@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.UserDAO">
+
+	<resultMap id="userMap" type="user">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="legalname" property="legalname"/>
+		<result column="tel" property="tel"/>
+		<result column="sex" property="sex"/>
+		<result column="signature" property="signature"/>
+		<result column="picpath" property="picpath"/>
+
+		<association property="province" javaType="province"
+					 select="com.baizhi.dao.ProvinceDAO.selectById" column="provinceid"/>
+
+		<association property="city" javaType="city"
+					 select="com.baizhi.dao.CityDAO.selectById" column="cityid"/>
+		<association property="teacher" javaType="teacher"
+					 select="com.baizhi.dao.TeacherDAO.selectById" column="teacherid"/>
+	</resultMap>
+	<sql id="userselectcommons">
+		id,name,legalname,tel,sex,signature,picpath,provinceid,cityid,password,salt,teacherid
+	</sql>
+<!--查所有用户-->
+	<select id="selectAll" resultMap="userMap">
+		select <include refid="userselectcommons"/> from user
+	</select>
+<!--根据一个id查一个详情-->
+	<select id="selectById" parameterType="String" resultMap="userMap">
+		select <include refid="userselectcommons"/> from user where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="user">
+		insert into user values(#{id},#{name},#{legalname},#{tel},#{sex},#{signature},#{picpath},#{province.id},#{city.id},#{password},#{salt},#{teacher.id})
+	</insert>
+	<!--修改-->
+	<update id="update" parameterType="user">
+		update user set id=#{id},name=#{name},legalname=#{legalname},tel=#{tel},sex=#{sex},signature=#{signature},picpath=#{picpath},provinceid=#{province.id},cityid=#{city.id},password=#{password},salt=#{salt},teacherid=#{teacher.id} where id=#{id}
+	</update>
+	<!--删除-->
+	<delete id="delete" parameterType="String">
+		delete from user where id=#{id}
+	</delete>
+	<!--分页-->
+	<select id="queryByPage" resultMap="userMap">
+		select <include refid="userselectcommons"/> from user limit #{page},#{rows}
+	</select>
+    <!---->
+    <select id="selectLegalname" parameterType="String" resultType="user">
+        select id,name,legalname from user where id=#{id}
+    </select>
+</mapper>

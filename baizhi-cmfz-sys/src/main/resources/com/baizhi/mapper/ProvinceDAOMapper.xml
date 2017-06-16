@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ProvinceDAO">
+
+	<!--封装关系属性-->
+	<resultMap id="provinceMap" type="province">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+
+		<collection property="citys" javaType="list" ofType="city"
+					select="com.baizhi.dao.CityDAO.selectByProvinceid" column="id">
+
+		</collection>
+	</resultMap>
+
+<!--查所有省-->
+	<select id="selectAll" resultType="province">
+		select id,name from province
+	</select>
+<!--根据一个id查一个详情-->
+	<select id="selectById" parameterType="String" resultType="province">
+		select id,name from province where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="province">
+		insert into province values(#{id},#{name})
+	</insert>
+	<!--修改-->
+	<update id="update" parameterType="province">
+		update province set id=#{id},name=#{name} where id=#{id}
+	</update>
+	<!--删除-->
+	<delete id="delete" parameterType="String">
+		delete from province where id=#{id}
+	</delete>
+	<!--分页-->
+	<select id="queryByPage" resultMap="provinceMap">
+		select id,name from province limit #{page},#{rows}
+	</select>
+</mapper>

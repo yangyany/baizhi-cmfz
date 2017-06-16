@@ -1,0 +1,143 @@
+[
+  {
+    "id": "1",
+    "name": "系统管理",
+    "iconCls": "icon-bullet_wrench",
+    "href": "",
+    "children": [
+      {
+        "id": "2",
+        "name": "数据备份",
+        "iconCls": "icon-database_yellow",
+        "href": "index.jsp"
+      },
+      {
+        "id": "3",
+        "name": "系统日志",
+        "iconCls": "icon-medal_bronze_2",
+        "href": "index.jsp"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "用户管理",
+    "iconCls": "icon-user_gray_cool",
+    "href": "",
+    "children": [
+      {
+        "id": "5",
+        "name": "用户基本信息",
+        "iconCls": "icon-user_female",
+        "href": "/back/admin/showAllUser.jsp"
+      },
+      {
+        "id": "6",
+        "name": "用户反馈信息",
+        "iconCls": "icon-user_female",
+        "href": "/page/manager/showAllRfc.jsp"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "name": "上师管理",
+    "iconCls": "icon-user_home",
+    "href": "",
+    "children": [
+      {
+        "id": "8",
+        "name": "上师基本信息",
+        "iconCls": "icon-user_female",
+        "href": "/page/manager/showAllShangShi.jsp"
+      },
+      {
+        "id": "9",
+        "name": "文章",
+        "iconCls": "icon-user_female",
+        "href": "/index.jsp"
+      }
+
+    ]
+  },
+  {
+    "id": "10",
+    "name": "专辑管理",
+    "iconCls": "icon-user_home",
+    "href": "",
+    "children": [
+      {
+        "id": "11",
+        "name": "专辑基本信息",
+        "iconCls": "icon-user_female",
+        "href": "/index.jsp"
+      },
+      {
+        "id": "12",
+        "name": "章节列表",
+        "iconCls": "icon-user_female",
+        "href": "/index.jsp"
+      }
+
+    ]
+  },
+  {
+    "id": "13",
+    "name": "功课管理",
+    "iconCls": "icon-user_home",
+    "href": "",
+    "children": [
+      {
+        "id": "14",
+        "name": "功课信息",
+        "iconCls": "icon-user_female",
+        "href": "/index.jsp"
+      },
+      {
+        "id": "15",
+        "name": "计数器",
+        "iconCls": "icon-user_female",
+        "href": "/index.jsp"
+      }
+
+    ]
+  },
+  {
+    "id": "16",
+    "name": "城市管理",
+    "iconCls": "icon-user_home",
+    "href": "",
+    "children": [
+      {
+        "id": "17",
+        "name": "省",
+        "iconCls": "icon-user_female",
+        "href": "/index.jsp"
+      },
+      {
+        "id": "18",
+        "name": "市",
+        "iconCls": "icon-user_female",
+        "href": "/index.jsp"
+      }
+
+    ]
+  },
+  {
+    "id": "19",
+    "name": "轮播图管理",
+    "iconCls": "icon-user_home",
+    "href": "",
+    "children": [
+      {
+        "id": "20",
+        "name": "图片信息",
+        "iconCls": "icon-user_female",
+        "href": "/index.jsp"
+      }
+
+    ]
+  }
+]
+
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.MusicDAO">
+
+	<sql id="musicconmmons">
+		id,title,count,author,broadcast,picpath
+	</sql>
+<!--查所有上师-->
+	<select id="selectAll" resultType="music">
+		select <include refid="musicconmmons"/> from music
+	</select>
+<!--根据一个id查一个详情-->
+	<select id="selectById" parameterType="String" resultType="music">
+		select <include refid="musicconmmons"/> from music where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="music">
+		insert into music values(#{id},#{title},#{count},#{author},#{broadcast},#{picpath})
+	</insert>
+	<!--修改-->
+	<update id="update" parameterType="music">
+		update music set id=#{id},title=#{title},count=#{count},author=#{author},broadcast=#{broadcast},picpath=#{picpath} where id=#{id}
+	</update>
+	<!--删除-->
+	<delete id="delete" parameterType="String">
+		delete from music where id=#{id}
+	</delete>
+	<!--分页-->
+	<select id="queryByPage" resultType="music">
+		select <include refid="musicconmmons"/> from music limit #{page},#{rows}
+	</select>
+</mapper>

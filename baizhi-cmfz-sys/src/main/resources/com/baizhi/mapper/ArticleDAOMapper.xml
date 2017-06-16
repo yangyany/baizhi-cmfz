@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ArticleDAO">
+
+	<sql id="articleconmmons">
+		id,title,author,creatdate,content,type
+	</sql>
+<!--查所有文章-->
+	<select id="selectAll" resultType="article">
+		select <include refid="articleconmmons"/> from article
+	</select>
+<!--根据一个id查一个详情-->
+	<select id="selectById" parameterType="String" resultType="article">
+		select <include refid="articleconmmons"/> from article where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="article">
+		insert into article values(#{id},#{title},#{author},#{creatdate},#{content},#{type})
+	</insert>
+	<!--修改-->
+	<update id="update" parameterType="article">
+		update article set id=#{id},title=#{title},author=#{author},creatdate=#{creatdate},content=#{content} where id=#{id}
+	</update>
+	<!--删除-->
+	<delete id="delete" parameterType="String">
+		delete from article where id=#{id}
+	</delete>
+	<!--分页-->
+	<select id="queryByPage" resultType="article">
+		select <include refid="articleconmmons"/> from article limit #{page},#{rows}
+	</select>
+</mapper>

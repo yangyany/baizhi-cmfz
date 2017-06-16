@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.CityDAO">
+
+<!--查所有市-->
+	<select id="selectAll" resultType="city">
+		select id,name,provinceid from city
+	</select>
+<!--根据一个id查一个详情-->
+	<select id="selectById" parameterType="String" resultType="city">
+		select id,name,provinceid from city where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="city">
+		insert into city values(#{id},#{name},#{province.id})
+	</insert>
+	<!--修改-->
+	<update id="update" parameterType="city">
+		update city set id=#{id},name=#{name},provinceid=#{province.id} where id=#{id}
+	</update>
+	<!--删除-->
+	<delete id="delete" parameterType="String">
+		delete from city where id=#{id}
+	</delete>
+	<!--分页-->
+	<select id="queryByPage" resultType="city">
+		select id,name,provinceid from city limit #{page},#{rows}
+	</select>
+	<!--根据省id查市-->
+	<select id="selectByProvinceid" parameterType="String" resultType="city">
+		select id,name,provinceid from city where provinceid=#{provinceid}
+	</select>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.AccordionDAO">
+	<resultMap id="accordionMap" type="accordion">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="iconCls" property="iconCls"/>
+		<result column="href" property="href"/>
+		<collection property="children" javaType="list" ofType="accordion"
+					select="com.baizhi.dao.AccordionDAO.selectList" column="id"></collection>
+	</resultMap>
+	<!--查所有-->
+	<select id="selectAll" resultMap="accordionMap">
+		select id,name,iconCls,href from accordion where parent='0'
+</select>
+
+	<!--查询二级-->
+	<select id="selectList" parameterType="String" resultType="accordion">
+		select id,name,iconCls,href from accordion where parent=#{id}
+	</select>
+</mapper>

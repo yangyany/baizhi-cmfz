@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.TeacherDAO">
+
+<!--查所有上师-->
+	<select id="selectAll" resultType="teacher">
+		select id,name,picpath from teacher
+	</select>
+<!--根据一个id查一个详情-->
+	<select id="selectById" parameterType="String" resultType="teacher">
+		select id,name,picpath from teacher where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="teacher">
+		insert into teacher values(#{id},#{name},#{picpath})
+	</insert>
+	<!--修改-->
+	<update id="update" parameterType="teacher">
+		update teacher set id=#{id},name=#{name},picpath=#{picpath} where id=#{id}
+	</update>
+	<!--删除-->
+	<delete id="delete" parameterType="String">
+		delete from teacher where id=#{id}
+	</delete>
+	<!--分页-->
+	<select id="queryByPage" resultType="teacher">
+		select id,name,picpath from teacher limit #{page},#{rows}
+	</select>
+</mapper>

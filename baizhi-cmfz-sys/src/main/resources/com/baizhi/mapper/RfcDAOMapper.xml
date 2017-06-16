@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.RfcDAO">
+<!--封装关系属性-->
+	<resultMap id="rfcMap" type="rfc">
+		<id column="id" property="id"/>
+		<result column="content" property="content"/>
+		<result column="pushdate" property="pushdate"/>
+		<association property="user" javaType="user"
+					 select="com.baizhi.dao.UserDAO.selectLegalname" column="userid"></association>
+	</resultMap>
+<!--查所有记录-->
+	<select id="selectAll" resultMap="rfcMap">
+		select id,userid,content,pushdate from rfc
+	</select>
+<!--根据一个id查一个详情-->
+	<select id="selectById" parameterType="String" resultMap="rfcMap">
+		select id,userid,content,pushdate from rfc where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="rfc">
+		insert into rfc values(#{id},#{user.id},#{content},#{pushdate})
+	</insert>
+	<!--修改-->
+	<update id="update" parameterType="rfc">
+		update rfc set id=#{id},userid=#{user.id},content=#{content},pushdate=#{pushdate} where id=#{id}
+	</update>
+	<!--删除-->
+	<delete id="delete" parameterType="String">
+		delete from rfc where id=#{id}
+	</delete>
+	<!--分页-->
+	<select id="queryByPage" resultMap="rfcMap">
+		select id,userid,content,pushdate from rfc limit #{page},#{rows}
+	</select>
+</mapper>
