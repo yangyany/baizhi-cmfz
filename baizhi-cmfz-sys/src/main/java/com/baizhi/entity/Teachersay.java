@@ -1,9 +1,11 @@
 package com.baizhi.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by yanyan on 2017/6/12.
  */
-public class Teachersay {
+public class Teachersay implements Serializable{
     private String id;
     private User user;
     private Article article;
