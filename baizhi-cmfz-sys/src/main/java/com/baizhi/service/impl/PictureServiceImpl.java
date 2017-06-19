@@ -1,5 +1,6 @@
 package com.baizhi.service.impl;
 
+import com.baizhi.cache.Cache;
 import com.baizhi.dao.PictureDAO;
 import com.baizhi.entity.Picture;
 import com.baizhi.service.PictureService;
@@ -32,16 +33,19 @@ public class PictureServiceImpl implements PictureService {
     }
 
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Picture queryById(String id) {
         return pictureDAO.selectById(id);
     }
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Picture> queryAll() {
         return pictureDAO.selectAll();
     }
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Map queryPictureByPage(Integer page, Integer rows) {
         List<Picture> pictures = pictureDAO.queryByPage((page - 1) * rows, rows);

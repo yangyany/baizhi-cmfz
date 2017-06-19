@@ -1,5 +1,6 @@
 package com.baizhi.service.impl;
 
+import com.baizhi.cache.Cache;
 import com.baizhi.dao.AdminDAO;
 import com.baizhi.entity.Admin;
 import com.baizhi.service.AdminService;
@@ -23,7 +24,6 @@ public class AdminServiceImpl implements AdminService {
     private AdminDAO adminDAO;
 
     public void save(Admin admin) {
-
         admin.setId(UUID.randomUUID().toString());
         String salt = SaltUtils.getSalt(6);
         admin.setSalt(salt);
@@ -32,6 +32,7 @@ public class AdminServiceImpl implements AdminService {
         adminDAO.insert(admin);
     }
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Admin queryOne(Admin admin) {
         Admin adminBD = adminDAO.selectOne(admin.getUsername());

@@ -1,5 +1,6 @@
 package com.baizhi.service.impl;
 
+import com.baizhi.cache.Cache;
 import com.baizhi.dao.MusicDAO;
 import com.baizhi.entity.Music;
 import com.baizhi.service.MusicService;
@@ -22,10 +23,12 @@ public class MusicServiceImpl implements MusicService {
     @Autowired
     private MusicDAO musicDAO;
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Music queryById(String id) {
         return musicDAO.selectById(id);
     }
+   @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Music> queryAll() {
         return musicDAO.selectAll();
@@ -42,6 +45,7 @@ public class MusicServiceImpl implements MusicService {
     public void save(Music music) {
         musicDAO.insert(music);
     }
+   @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Map queryMusicByPage(Integer page, Integer rows) {
         List<Music> musics = musicDAO.queryByPage((page - 1) * rows, rows);
