@@ -12,7 +12,7 @@ public class Article implements Serializable{
     private String id;
     private String title;
     private String author;
-    @JSONField(format = "yyyy-MM-dd")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date creatdate;
     private String content;
     private String authorpath;

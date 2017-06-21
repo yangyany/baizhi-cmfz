@@ -11,7 +11,7 @@ import java.util.Date;
 public class Counter implements Serializable{
     private String id;
     private String name;
-    @JSONField(format = "yyyy-MM-dd")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date creatdate;
     private Integer count;
     private Record record;

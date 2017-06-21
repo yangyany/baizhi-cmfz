@@ -12,7 +12,7 @@ public class Rfc implements Serializable{
     private String id;
     private User user;
     private String content;
-    @JSONField(format="yyyy-MM-dd")
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Date pushdate;
 
     public Rfc() {

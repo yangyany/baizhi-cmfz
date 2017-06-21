@@ -4,11 +4,8 @@ import com.baizhi.entity.Admin;
 import com.baizhi.service.AdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by yanyan on 2017/6/12.
@@ -23,19 +20,15 @@ public class AdminController {
      * 登录
      */
     @RequestMapping("/login")
-    @ResponseBody
-    public Map login(Admin admin){
+    public String login(Admin admin){
 
-        HashMap<String, Object> map = new HashMap<String, Object>();
         try {
+            System.out.println(admin);
             Admin adminDB = adminService.queryOne(admin);
-            map.put("success","back/main/main");
-            return map;
         } catch (Exception e) {
             e.printStackTrace();
-            map.put("error",e.getMessage());
-            return map;
         }
+        return "redirect:/back/main/main.jsp";
 
     }
 
