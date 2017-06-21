@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="baizhi-cmfz-sys:war">
+    <output-path>$PROJECT_DIR$/../../baizhi-cmfz/baizhi-cmfz-sys/target</output-path>
+    <root id="archive" name="baizhi-cmfz-sys.war">
+      <element id="artifact" artifact-name="baizhi-cmfz-sys:war exploded" />
+    </root>
+  </artifact>
+</component>
