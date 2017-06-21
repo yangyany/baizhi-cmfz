@@ -1,5 +1,6 @@
 package com.baizhi.service.impl;
 
+import com.baizhi.cache.Cache;
 import com.baizhi.dao.ProvinceDAO;
 import com.baizhi.entity.Province;
 import com.baizhi.service.ProvinceService;
@@ -22,11 +23,13 @@ public class ProvinceServiceImpl implements ProvinceService {
     @Autowired
     private ProvinceDAO provinceDAO;
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Province queryById(String id) {
         return provinceDAO.selectById(id);
     }
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Province> queryAll() {
 
@@ -47,6 +50,7 @@ public class ProvinceServiceImpl implements ProvinceService {
         province.setId(UUID.randomUUID().toString());
         provinceDAO.insert(province);
     }
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Map queryProvinceByPage(Integer page, Integer rows) {
         List<Province> provinces = provinceDAO.queryByPage((page - 1) * rows, rows);

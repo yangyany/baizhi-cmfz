@@ -1,5 +1,6 @@
 package com.baizhi.service.impl;
 
+import com.baizhi.cache.Cache;
 import com.baizhi.dao.AccordionDAO;
 import com.baizhi.entity.Accordion;
 import com.baizhi.service.AccordionService;
@@ -19,6 +20,7 @@ public class AccordionServiceImpl implements AccordionService {
 
     @Autowired
     private AccordionDAO accordionDAO;
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Accordion> queryAll() {
 

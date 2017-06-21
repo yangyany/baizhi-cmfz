@@ -18,7 +18,7 @@ public class TestAdminService {
     private AdminService adminService;
     @Test
     public void test(){
-        //adminService.save(new Admin(null,"zhangsan","123456",null));
+        //adminService.save(new Admin(null,"lisi","123456",null));
         Admin zhangsan = adminService.queryOne(new Admin(null, "zhangsan", "123456", null));
         System.out.println(zhangsan);
     }

@@ -1,5 +1,6 @@
 package com.baizhi.service.impl;
 
+import com.baizhi.cache.Cache;
 import com.baizhi.dao.TeacherDAO;
 import com.baizhi.entity.Teacher;
 import com.baizhi.service.TeacherService;
@@ -27,6 +28,7 @@ public class TeacherServiceImpl implements TeacherService {
         teacherDAO.insert(teacher);
     }
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Teacher> queryAll() {
 
@@ -48,6 +50,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     }
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Map queryTeacherByPage(Integer page, Integer rows) {
         List<Teacher> teachers = teacherDAO.queryByPage((page-1)*rows,rows);

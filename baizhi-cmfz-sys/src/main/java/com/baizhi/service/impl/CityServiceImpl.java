@@ -1,5 +1,6 @@
 package com.baizhi.service.impl;
 
+import com.baizhi.cache.Cache;
 import com.baizhi.dao.CityDAO;
 import com.baizhi.entity.City;
 import com.baizhi.service.CityService;
@@ -22,11 +23,13 @@ public class CityServiceImpl implements CityService {
     @Autowired
     private CityDAO cityDAO;
 
+   @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public City queryById(String id) {
         return cityDAO.selectById(id);
     }
 
+   @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<City> queryAll() {
 
@@ -48,6 +51,7 @@ public class CityServiceImpl implements CityService {
         cityDAO.insert(city);
     }
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Map queryCityByPage(Integer page, Integer rows) {
         List<City> cities = cityDAO.queryByPage((page - 1) * rows, rows);

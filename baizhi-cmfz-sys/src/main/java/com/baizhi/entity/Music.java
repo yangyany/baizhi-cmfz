@@ -1,11 +1,12 @@
 package com.baizhi.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by yanyan on 2017/6/12.
  */
-public class Music {
+public class Music implements Serializable{
     private String id;
     private String title;
     private Integer count;

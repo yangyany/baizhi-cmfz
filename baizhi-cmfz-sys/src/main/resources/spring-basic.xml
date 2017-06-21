@@ -57,4 +57,6 @@
     </bean>
     <!--配置注解式事务生效-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--引入spring-cxf.xml-->
+  <import resource="spring-redis.xml"/>
 </beans>

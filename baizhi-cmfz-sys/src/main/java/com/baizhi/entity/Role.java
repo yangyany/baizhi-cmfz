@@ -3,20 +3,18 @@ package com.baizhi.entity;
 import java.io.Serializable;
 
 /**
- * Created by yanyan on 2017/6/12.
+ * Created by yanyan on 2017/6/20.
  */
-public class Teacher implements Serializable{
+public class Role implements Serializable {
     private String id;
     private String name;
-    private String picpath;
 
-    public Teacher() {
+    public Role() {
     }
 
-    public Teacher(String id, String name, String picpath) {
+    public Role(String id, String name) {
         this.id = id;
         this.name = name;
-        this.picpath = picpath;
     }
 
     public String getId() {
@@ -35,20 +33,11 @@ public class Teacher implements Serializable{
         this.name = name;
     }
 
-    public String getPicpath() {
-        return picpath;
-    }
-
-    public void setPicpath(String picpath) {
-        this.picpath = picpath;
-    }
-
     @Override
     public String toString() {
-        return "Teacher{" +
+        return "Role{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", picpath='" + picpath + '\'' +
                 '}';
     }
 }

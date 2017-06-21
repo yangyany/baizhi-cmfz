@@ -1,5 +1,6 @@
 package com.baizhi.service.impl;
 
+import com.baizhi.cache.Cache;
 import com.baizhi.dao.ArticleDAO;
 import com.baizhi.entity.Article;
 import com.baizhi.service.ArticleService;
@@ -25,11 +26,13 @@ public class ArticleServiceImpl implements ArticleService {
         articleDAO.insert(article);
     }
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Article> queryAll() {
         List<Article> articles = articleDAO.selectAll();
         return articles;
     }
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Article queryById(String id) {
         Article article = articleDAO.selectById(id);
@@ -44,6 +47,7 @@ public class ArticleServiceImpl implements ArticleService {
         articleDAO.delete(id);
     }
 
+    @Cache
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Map queryArticleByPage(Integer page, Integer rows) {
         List<Article> articles = articleDAO.queryByPage((page - 1) * rows, rows);

@@ -2,16 +2,17 @@ package com.baizhi.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by yanyan on 2017/6/12.
  */
-public class Rfc {
+public class Rfc implements Serializable{
     private String id;
     private User user;
     private String content;
-    @JSONField(format="yyyy-MM-dd")
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Date pushdate;
 
     public Rfc() {
